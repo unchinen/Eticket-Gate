@@ -1,0 +1,321 @@
+<html>
+  <head>
+    <html lang="ja">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!-- CSS 埋め込み -->
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        font-size:100%;
+        box-sizing: border-box;
+        padding: 0.5%;
+      }
+
+      body {
+        width: 100%; /* リキッド */
+        height: 100%;
+        max-width: 100%; /* 幅の上限 */
+        min-width: 1200px; /* 幅の下限 */
+        margin: 0px auto;
+        overflow: hidden; /* スクロールバー隠し */
+      }
+
+      header{ /*Eticket Gate*/
+        font-size : 300%;
+        height: 15%;
+        width: 100%; /* リキッド ヘッダー*/
+        box-sizing: border-box;
+        padding: 1%;
+        background: #333;
+        color: white;
+        text-align: center;
+      }
+
+      nav {
+        width: 50%; /* リキッド ナビ */
+        float: left;
+        height: 100%;
+        background-color: white;
+        border :  1px solid;
+        border-color: #696969;
+      }
+      
+      #chart1_box {
+        width: 100%;
+        height: 50%;
+      }
+
+      section { /*itemの親 こいつ+canvas=100%*/
+        width: 50%; /* リキッド セクション */
+        height: 100%;
+        /*margin-left:auto; 意味なさげ
+        margin-right:auto;*/
+        float: left;
+      }
+
+      .item1 {
+        width: 100%; /* リキッド item1 */
+        height: 33%;
+        background-color: #c0c0c0;
+      }
+      
+      .item1_cube1 {
+        width: 50%;
+        height: 100%;
+        border :  1px solid;
+        border-color: #696969;
+      }
+  
+      #string1 { /*感染リスク*/
+        font-size : 250%; 
+        width: 100%;
+        height: 20%;
+        text-align: center;
+      }
+      
+      #danger {
+        font-size : 550%; 
+        width: 100%;
+        height: 30%;
+        text-align: center;
+      }
+      
+      .item2 {
+        width: 100%; /* リキッド item2 */
+        height: 33%;
+        background-color: #d3d3d3;
+      }
+
+      .item3 {
+        width: 100%; /* リキッド item3 */
+        height: 100%;
+        background-color: #dcdcdc;
+      }
+      
+      #view_today {
+        font-size : 250%; 
+        width: 100%;
+        height: 34%;
+        text-align: center;
+      }
+      
+      @media screen and (max-width: 960px) {
+        * {
+          margin: 0px;
+          padding: 0px;
+          height: 100%;
+          box-sizing: border-box;
+         padding: 0.5%;
+        }
+
+        body {
+          width: 100%; /* リキッド */
+          height: 100%;
+          max-width: 100%; /* 幅の上限 */
+          min-width: 100%; /* 幅の下限 */
+          margin: 0px auto;
+          overflow: hidden; /* スクロールバー隠し */
+        }
+
+        header{ /*Eticket Gate*/
+          font-size : 200%;
+          height: 5%;
+          width: 100%; /* リキッド ヘッダー*/
+          box-sizing: border-box;
+          padding: 0;
+          background: #333;
+          color: white;
+          text-align: center;
+        }
+
+        nav {
+          width: 100%; /* リキッド ナビ */
+          float: left;
+          height: 50%;
+          background-color: white;
+          border :  1px solid;
+          border-color: #696969;
+        }
+
+        #chart1_box {
+          width: 100%;
+          height: 70%;
+        }
+
+        section { /*itemの親 こいつ+canvas=100%*/
+          width: 100%; /* リキッド セクション */
+          height: 50%;
+          /*margin-left:auto; 意味なさげ
+          margin-right:auto;*/
+          float: left;
+        }
+
+        .item1 {
+          width: 100%; /* リキッド item1 */
+          height: 30%;
+          background-color: #c0c0c0;
+        }
+
+        .item1_cube1 {
+          width: 50%;
+          height: 100%;
+          border :  1px solid;
+          border-color: #696969;
+        }
+
+        #string1 { /*感染リスク*/
+          font-size : 200%; 
+          width: 100%;
+          height: 20%;
+          text-align: center;
+        }
+
+        #danger {
+          font-size : 400%; 
+          width: 100%;
+          height: 30%;
+          text-align: center;
+        }
+
+        .item2 {
+          width: 100%; /* リキッド item2 */
+          height: 30%;
+          background-color: #d3d3d3;
+        }
+
+        .item3 {
+          width: 100%; /* リキッド item3 */
+          height: 30%;
+          background-color: #dcdcdc;
+        }
+
+        #view_today {
+          font-size : 250%; 
+          width: 100%;
+          height: 34%;
+          text-align: center;
+        }
+      }
+      </style>
+    </head>
+    <body>
+      <title>Eticket Gate graph</title>
+      <header>
+        Eticket Gate
+      </header>
+      <nav>
+        <div id="chart1_box" style="width:100%">
+          <canvas id="chart1"></canvas>
+          </div>
+        </nav>
+      <section>
+        <div class="item1">
+          <div class="item1_cube1">
+          <div id="string1">感染リスク</div>
+          <div id="danger"></div>
+            </div>
+        </div>
+        <div class="item2">
+          <div id="infection_data">
+            </div>
+        </div>
+        <div class="item3">
+          <div id="view_today"></div>
+        </div>
+      </section>
+      </body>
+           <!--   jQuery・bootstrapライブラリ読み込み -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <!--  独自ライブラリ読み込み -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+      <!-- view_todayを定義 -->
+      <script type="text/javascript">
+        document.getElementById("view_today").innerHTML = getToday();
+        function getToday() {
+          var now = new Date();
+          var year = now.getFullYear();
+          var mon = now.getMonth()+1; //１を足すこと
+          var day = now.getDate();
+          var you = now.getDay(); //曜日(0～6=日～土)
+          //曜日の選択肢
+          var youbi = new Array("日","月","火","水","木","金","土");
+          //出力用
+          var s = "現在 : " + year + "年" + mon + "月" + day + "日 (" + youbi[you] + ")";
+          return s;
+        }
+      </script>
+      <!-- chart1を定義-->
+      <script>
+        var ctx = document.getElementById("chart1");
+        ctx.style.border = "1px solid";
+        var w = $('#chart1_box').width();
+	      var h = $('#chart1_box').height();
+	      $('#chart1').attr('width', w);
+	      $('#chart1').attr('height', h);
+        /*canvas.width = chart1_box.clientWidth;　使ったらバグった
+        canvas.height = char1_box.clientHeight;*/
+        var myLineChart = new Chart(ctx, {
+          // グラフの種類：折れ線グラフを指定
+          type: 'line',
+          data: {
+            // x軸の各メモリ
+            labels: ['8時', '９時', '１０時', '１１時', '１２時', '１３時', '１４時','１５時','１７時','１７時','１８時','１９時','２０時','２１時','２２時','２３時'],
+            datasets: [
+              {
+                label: '現在の人場者数',
+                data: [27, 26, 31, 25, 30, 22, 27, 26,42,33,21,10,7,4,0,0,],//ここをラズパイとリンクさせたい
+                borderColor: "#ec4343",
+                backgroundColor: "#00000000",
+                lineTension:0
+              },
+             ],
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                suggestedMax: 50,//教室用
+                suggestedMin: 0,
+                stepSize: 10,  // 縦メモリのステップ数
+                callback: function(value, index, values){
+                  return  value +  '人'  // 各メモリのステップごとの表記（valueは各ステップの値）
+                }
+              }
+            }]
+          }, 
+       });
+        </script>
+        <!-- dangerを定義-->
+      <script> 
+        var rating = 0 //人数と１０万人当たり感染者数のＡＰＩを使って危険度を設定（ＡＰＩ準備出来次第式を式に書き換え）
+        var high = 1; //リスク低の基準値（相場がわからない・・・）
+        var low = 2; //リスク高の基準値（相場がわからない・・・）
+        var ratingtext;
+        if(rating < low){
+          ratingtext = "低";
+          document.getElementById("danger").style.color = "blue";
+        }
+        else if(rating < high){
+          ratingtext = "中";
+          document.getElementById("danger").style.color = "yellow";
+        }
+        else{
+          ratingtext = "高";
+          document.getElementById("danger").style.color = "red";
+        }
+        document.getElementById("danger").innerHTML = ratingtext;
+      </script>
+    <!-- 製作中 -->
+    <script>
+      fetch("https://opendata.corona.go.jp/api/Covid19JapanAll?dataName=%E6%B2%96%E7%B8%84%E7%9C%8C")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          // ここにURLのデータを取得した時の処理
+        });
+      </script>
+  </html>
