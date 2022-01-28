@@ -61,8 +61,10 @@
       #total_visitor {
           font-size : 250%; 
           width: 100%;
-          height: 30%;
+          height: 50%;
           text-align: center;
+          border :  1px solid;
+          border-color: #696969;
         }
 
       section { /*itemの親 こいつ+canvas=100%*/
@@ -195,10 +197,12 @@
         }
         
         #total_visitor {
-          font-size : 200%; 
+          font-size : 150%; 
           width: 100%;
-          height: 30%;
+          height: 50%;
           text-align: center;
+          border :  1px solid;
+          border-color: #696969;
         }
 
         section { /*itemの親 こいつ+canvas=100%*/
@@ -288,7 +292,6 @@
         <div id="chart1_box" style="width:100%">
           <canvas id="chart1"></canvas>
           </div>
-         <div id="total_visitor"></div>
         </nav>
       <section>
         <div class="item1">
@@ -302,6 +305,7 @@
             </div>
         </div>
         <div class="item2">
+           <div id="total_visitor"></div>
           <div id="infection_data"></div>
         </div>
         <div class="item3">
@@ -318,7 +322,7 @@
           for (let i = 0; i < 10; i++){
              j += gv[i][1];
           }
-          return "今までの総入場者数 : " + j + "人";
+          return "今日の総入場者数 : " + j + "人";
         }
         var visitor = gv[15][1]; /*入場者数　APIお待ちしています*/
         document.getElementById("visitor").innerHTML = visitor + "人";
