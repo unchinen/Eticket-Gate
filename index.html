@@ -57,6 +57,13 @@
         width: 100%;
         height: 50%;
       }
+      
+      #total_visitor {
+          font-size : 250%; 
+          width: 100%;
+          height: 30%;
+          text-align: center;
+        }
 
       section { /*itemの親 こいつ+canvas=100%*/
         width: 50%; /* リキッド セクション */
@@ -164,12 +171,12 @@
         }
         
         #button1 {
-          background-color: transparent;
+          background-color: silver;
           width: 0%;
-          height: 0%;
+          height: 100%;
           float: left;
           color: white;
-          font-size : 150%; 
+          font-size : 0%; 
           text-align: center;
         }
 
@@ -185,6 +192,13 @@
         #chart1_box {
           width: 100%;
           height: 70%;
+        }
+        
+        #total_visitor {
+          font-size : 200%; 
+          width: 100%;
+          height: 30%;
+          text-align: center;
         }
 
         section { /*itemの親 こいつ+canvas=100%*/
@@ -269,12 +283,12 @@
       <header> 
         <button id="button1" type="button" onclick="history.back()"></button>
         Eticket Gate
-     
       </header>
       <nav>
         <div id="chart1_box" style="width:100%">
           <canvas id="chart1"></canvas>
           </div>
+         <div id="total_visitor"></div>
         </nav>
       <section>
         <div class="item1">
@@ -297,9 +311,17 @@
       </body>
             <!-- 色んな所に使うかもしれない変数-->
     <script>
-        var visitor = 100; /*入場者数　APIお待ちしています*/
+        var gv = [['8時', 27], ['9時', 26], ['10時', 31], ['11時', 25], ['12時', 30], ['13時', 22], ['14時', 27], ['15時', 26], ['16時', 42], ['17時', 33], ['18時', 21], ['19時', 10], ['20時', 7], ['21時', 4], ['22時', 0], ['23時', 0]]; /*時間帯と入場者数の配列　glaph_valiable*/
+        document.getElementById("total_visitor").innerHTML = for_total();
+        function for_total(){
+          let j = 0; 
+          for (let i = 0; i < 10; i++){
+             j += gv[i][1];
+          }
+          return "今までの総入場者数 : " + j + "人";
+        }
+        var visitor = gv[15][1]; /*入場者数　APIお待ちしています*/
         document.getElementById("visitor").innerHTML = visitor + "人";
-        
       </script>
            <!--   jQuery・bootstrapライブラリ読み込み -->
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -338,11 +360,11 @@
           type: 'line',
           data: {
             // x軸の各メモリ
-            labels: ['8時', '９時', '１０時', '１１時', '１２時', '１３時', '１４時','１５時','１７時','１７時','１８時','１９時','２０時','２１時','２２時','２３時'],
+            labels: [gv[0][0], gv[1][0], gv[2][0], gv[3][0], gv[4][0], gv[5][0], gv[6][0], gv[7][0], gv[8][0], gv[9][0], gv[10][0], gv[11][0], gv[12][0], gv[13][0], gv[14][0], gv[15][0]],
             datasets: [
               {
                 label: '現在の人場者数',
-                data: [27, 26, 31, 25, 30, 22, 27, 26,42,33,21,10,7,4,0,0,],//ここをラズパイとリンクさせたい
+                data: [gv[0][1], gv[1][1], gv[2][1], gv[3][1], gv[4][1], gv[5][1], gv[6][1], gv[7][1], gv[8][1], gv[9][1], gv[10][1], gv[11][1], gv[12][1], gv[13][1], gv[14][1], gv[15][1]],//ここをラズパイとリンクさせたい
                 borderColor: "#ec4343",
                 backgroundColor: "#00000000",
                 lineTension:0
