@@ -63,6 +63,7 @@
       }
       
       .item1_cube1 {
+        float: left;
         width: 50%;
         height: 100%;
         border :  1px solid;
@@ -82,6 +83,27 @@
         height: 30%;
         text-align: center;
       }
+      
+      .item1_cube2 {
+          width: 100%;
+          height: 100%;
+          border :  1px solid;
+          border-color: #696969;
+        }
+      
+      #visitor {
+        font-size : 550%; 
+        width: 100%;
+        height: 30%;
+        text-align: center;
+      }
+      
+      #string2 { /*入場者数*/
+          font-size : 250%; 
+          width: 100%;
+          height: 20%;
+          text-align: center;
+        }
       
       .item2 {
         width: 100%; /* リキッド item2 */
@@ -165,7 +187,7 @@
           border :  1px solid;
           border-color: #696969;
         }
-
+        
         #string1 { /*感染リスク*/
           font-size : 100%; 
           width: 100%;
@@ -174,6 +196,27 @@
         }
 
         #danger {
+          font-size : 300%; 
+          width: 100%;
+          height: 30%;
+          text-align: center;
+        }
+        
+        .item1_cube2 {
+          width: 100%;
+          height: 100%;
+          border :  1px solid;
+          border-color: #696969;
+        }
+        
+        #string2 { /*入場者数*/
+          font-size : 100%; 
+          width: 100%;
+          height: 20%;
+          text-align: center;
+        }
+        
+        #visitor {
           font-size : 300%; 
           width: 100%;
           height: 30%;
@@ -217,16 +260,25 @@
           <div id="string1">感染リスク</div>
           <div id="danger"></div>
             </div>
+          <div class="item1_cube2">
+            <div id="string2">入場者数</div>
+            <div id="visitor"></div>
+            </div>
         </div>
         <div class="item2">
-          <div id="infection_data">
-            </div>
+          <div id="infection_data"></div>
         </div>
         <div class="item3">
           <div id="view_today"></div>
         </div>
       </section>
       </body>
+            <!-- 色んな所に使うかもしれない変数-->
+    <script>
+        var visitor = 100; /*入場者数　APIお待ちしています*/
+        document.getElementById("visitor").innerHTML = visitor + "人";
+        
+      </script>
            <!--   jQuery・bootstrapライブラリ読み込み -->
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -309,18 +361,29 @@
         }
         document.getElementById("danger").innerHTML = ratingtext;
       </script>
-    <!-- 製作中 -->
-    <script>
-      fetch("https://opendata.corona.go.jp/api/Covid19JapanAll?dataName=%E6%B2%96%E7%B8%84%E7%9C%8C")
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          // ここにURLのデータを取得した時の処理
-        });
-      </script>
-	<script>
-	   window.addEventListener("orientationchange", ()=>{
+    <!-- スマホを画面を変えたときグラフを再描画-->
+      <script>
+        window.addEventListener("orientationchange", ()=>{
           document.write('<canvas>chart1</canvas>');
         });
-	</script>
+        </script>
+    <!-- 総感染者をwebからもってくるAPI だがcorsにはじかれて死亡中-->
+    <script>/*
+         fetch("https://opendata.corona.go.jp/api/Covid19JapanAll?dataName=%E6%B2%96%E7%B8%84%E7%9C%8C",{
+           method: 'GET',
+           mode: 'cors'
+         })
+        .then(function (responce){
+          return responce.json();
+         })
+        .then(function (json_root){
+          // ここにURLのデータを取得した時の処理
+          var infection_json = json_root.itemList[0];
+          document.getElementById("infection_data").lastElementChild.textContent = json.date;
+          var infection_date = infection_json.date;
+          var infection_name_jp = infection_json.name_jp;
+          var infection_npatients = infection_json.npatients;
+          var infection_string = infection_name_jp + " " + infection_date + "時点の総感染者数 : " +  infection_npatients + "人";
+          }); */
+     </script> 
   </html>
