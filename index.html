@@ -593,8 +593,8 @@
       </script>
     <!-- スマホを画面を変えたときグラフを再描画-->
       <script>
-        window.addEventListener("orientationchange", ()=>{
-          document.write('<meta http-equiv="refresh" content="1">');
+         window.addEventListener("orientationchange", function() {
+            location.reload();
         });
         </script>
     <!-- 総感染者をwebからもってくるAPI だがcorsにはじかれて死亡中-->
