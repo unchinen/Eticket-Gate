@@ -33,6 +33,16 @@
         color: white;
         text-align: center;
       }
+      
+      #button1 {
+          background-color: transparent;
+          width: 0%;
+          height: 0%;
+          float: left;
+          color: white;
+          font-size : 150%; 
+          text-align: center;
+        }
 
       nav {
         width: 50%; /* リキッド ナビ */
@@ -142,7 +152,7 @@
           overflow: hidden; /* スクロールバー隠し */
         }
 
-        header{ /*Eticket Gate*/
+        header { /*Eticket Gate*/
           font-size : 150%;
           height: 5%;
           width: 100%; /* リキッド ヘッダー*/
@@ -150,6 +160,16 @@
           padding: 0;
           background: #333;
           color: white;
+          text-align: center;
+        }
+        
+        #button1 {
+          background-color: transparent;
+          width: 0%;
+          height: 0%;
+          float: left;
+          color: white;
+          font-size : 150%; 
           text-align: center;
         }
 
@@ -246,8 +266,10 @@
     </head>
     <body>
       <title>Eticket Gate graph</title>
-      <header>
+      <header> 
+        <button id="button1" type="button" onclick="history.back()"></button>
         Eticket Gate
+     
       </header>
       <nav>
         <div id="chart1_box" style="width:100%">
