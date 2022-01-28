@@ -490,7 +490,6 @@
         <div class="item3">
           <div id="view_today"></div>
         </div>
-	 <meta http-equiv="refresh" content="1">
       </section>
       </body>
             <!-- 色んな所に使うかもしれない変数-->
@@ -595,7 +594,7 @@
     <!-- スマホを画面を変えたときグラフを再描画-->
       <script>
         window.addEventListener("orientationchange", ()=>{
-          document.write('<canvas>chart1</canvas>');
+          document.write('<meta http-equiv="refresh" content="1">');
         });
         </script>
     <!-- 総感染者をwebからもってくるAPI だがcorsにはじかれて死亡中-->
